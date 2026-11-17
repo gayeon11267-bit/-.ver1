@@ -9,7 +9,6 @@ import { Skills } from './components/Skills';
 import { Contact } from './components/Contact';
 import { AdminModal } from './components/AdminModal';
 import { ResumeModal } from './components/ResumeModal';
-import { TranscriptModal } from './components/TranscriptModal';
 import { Footer } from './components/Footer';
 
 const MainView: React.FC = () => {
@@ -49,7 +48,6 @@ const MainView: React.FC = () => {
       {/* 4. Global Modals */}
       <div className="app-shell-print-hide">
         <ProjectModal />
-        <TranscriptModal />
         <AdminModal />
       </div>
       <ResumeModal />

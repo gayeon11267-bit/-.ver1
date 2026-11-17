@@ -1,9 +1,9 @@
 import React from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { X, Calendar, UserCheck, CheckCircle2, TrendingUp, Layers, ChevronRight, FileCheck } from 'lucide-react';
+import { X, Calendar, UserCheck, CheckCircle2, TrendingUp, Layers, ChevronRight } from 'lucide-react';
 
 export const ProjectModal: React.FC = () => {
-  const { displayProjects, selectedProjectId, setSelectedProjectId, setIsTranscriptOpen, t } = usePortfolio();
+  const { displayProjects, selectedProjectId, setSelectedProjectId, t } = usePortfolio();
 
   if (!selectedProjectId) return null;
 
@@ -142,27 +142,6 @@ export const ProjectModal: React.FC = () => {
               </div>
             </div>
 
-            {/* Official Academic Transcript Verification Callout */}
-            {project.id === 'proj-global-exchange' && (
-              <div className="p-6 rounded-2xl border border-blue-200 bg-blue-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <div className="text-xs font-bold text-blue-900 flex items-center gap-2">
-                    <FileCheck className="w-4 h-4 text-blue-600" />
-                    <span>{t.transcriptModal.title}</span>
-                  </div>
-                  <p className="text-xs text-blue-700">
-                    {t.transcriptModal.subtitle}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setIsTranscriptOpen(true)}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-extrabold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm shrink-0 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  <FileCheck className="w-4 h-4" />
-                  <span>{t.transcriptModal.viewTranscriptBtn}</span>
-                </button>
-              </div>
-            )}
           </div>
 
           {/* Applied Skills & Tags */}

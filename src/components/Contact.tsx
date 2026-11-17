@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { Mail, Phone, Linkedin, GraduationCap, Send, CheckCircle2, Copy, Check } from 'lucide-react';
+import { Mail, Linkedin, GraduationCap, Send, CheckCircle2, Copy, Check } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const { data, addInquiry, t } = usePortfolio();
@@ -117,17 +117,6 @@ export const Contact: React.FC = () => {
                     >
                       {t.contact.writeEmailBtn}
                     </a>
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <div className="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center font-bold">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-500 font-bold">{t.contact.phoneLabel}</div>
-                    <div className="text-sm font-extrabold text-slate-900">{contact.phone}</div>
                   </div>
                 </div>
 

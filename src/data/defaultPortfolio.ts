@@ -508,7 +508,7 @@ export const defaultPortfolioData: PortfolioData = {
     closingSubcopy:
       '채용 일정 조율·후보자 응대부터 급여·연말정산 자료 검증 및 마감까지, 현장에서 팀의 든든한 손발이 되어 정확하게 완수하겠습니다. 신입 채용 면접이나 가벼운 직무 커피챗 모두 환영합니다.',
     email: 'aabb1126@naver.com',
-    phone: '010-3020-0528',
+    phone: '',
     linkedIn: 'https://www.linkedin.com/in/gayeon-lee2003',
     location: '',
     availableStatus: '즉시 출근 및 정규직 / 채용연계형 인턴 가능',

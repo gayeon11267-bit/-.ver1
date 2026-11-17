@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { ArrowRight, CheckCircle2, FileCheck, Briefcase } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Briefcase } from 'lucide-react';
 
 interface ProjectsProps {
   mode?: 'internships' | 'projects';
 }
 
 export const Projects: React.FC<ProjectsProps> = ({ mode = 'projects' }) => {
-  const { displayProjects, setSelectedProjectId, setIsTranscriptOpen, t } = usePortfolio();
+  const { displayProjects, setSelectedProjectId, t } = usePortfolio();
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const isInternshipMode = mode === 'internships';
@@ -194,17 +194,6 @@ export const Projects: React.FC<ProjectsProps> = ({ mode = 'projects' }) => {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2">
-                      {project.id === 'proj-global-exchange' && (
-                        <button
-                          onClick={() => setIsTranscriptOpen(true)}
-                          className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl transition-all shadow-2xs cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
-                          title={t.transcriptModal.title}
-                        >
-                          <FileCheck className="w-3.5 h-3.5 text-blue-600" />
-                          <span>{t.transcriptModal.viewTranscriptBtn}</span>
-                        </button>
-                      )}
-
                       <button
                         onClick={() => setSelectedProjectId(project.id)}
                         className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition-all shadow hover:shadow-md cursor-pointer hover:scale-[1.02] active:scale-[0.98]"

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { usePortfolio, PageTab } from '../context/PortfolioContext';
 import { Language } from '../data/translations';
-import { Lock, FileText, Menu, X, ArrowUpRight, Share2, Linkedin, Globe } from 'lucide-react';
+import { Lock, FileText, Menu, X, ArrowUpRight, Share2, Linkedin } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const {
     data,
+    isAuthenticated,
     setIsAdminOpen,
     setIsResumeOpen,
     inquiries,
@@ -167,18 +168,20 @@ export const Navbar: React.FC = () => {
             <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
           </button>
 
-          {/* Admin Mode Trigger */}
-          <button
-            onClick={() => setIsAdminOpen(true)}
-            className="relative p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer shrink-0"
-            title="관리자 모드 (비밀번호: 1111)"
-            aria-label="관리자 모드"
-          >
-            <Lock className="w-4 h-4" />
-            {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-400 ring-2 ring-slate-950 animate-pulse" />
-            )}
-          </button>
+          {/* Admin Mode Trigger (Visible ONLY after owner is already authenticated) */}
+          {isAuthenticated && (
+            <button
+              onClick={() => setIsAdminOpen(true)}
+              className="relative p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer shrink-0"
+              title="관리자 콘솔"
+              aria-label="관리자 콘솔"
+            >
+              <Lock className="w-4 h-4" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-400 ring-2 ring-slate-950 animate-pulse" />
+              )}
+            </button>
+          )}
 
           {/* Mobile hamburger */}
           <button
@@ -251,16 +254,18 @@ export const Navbar: React.FC = () => {
               <FileText className="w-3.5 h-3.5 text-blue-400" />
               {t.nav.resume}
             </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setIsAdminOpen(true);
-              }}
-              className="hover:text-white flex items-center gap-1.5"
-            >
-              <Lock className="w-3.5 h-3.5" />
-              Admin (1111)
-            </button>
+            {isAuthenticated && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsAdminOpen(true);
+                }}
+                className="hover:text-white flex items-center gap-1.5"
+              >
+                <Lock className="w-3.5 h-3.5" />
+                {t.nav.admin}
+              </button>
+            )}
           </div>
         </div>
       )}

@@ -55,8 +55,6 @@ interface PortfolioContextType {
   setSelectedProjectId: (id: string | null) => void;
   isResumeOpen: boolean;
   setIsResumeOpen: (open: boolean) => void;
-  isTranscriptOpen: boolean;
-  setIsTranscriptOpen: (open: boolean) => void;
   activeTab: PageTab;
   setActiveTab: (tab: PageTab) => void;
   language: Language;
@@ -144,7 +142,6 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
   const [activeTab, setActiveTabState] = useState<PageTab>('home');
   const [language, setLanguageState] = useState<Language>(() => {
     try {
@@ -317,11 +314,16 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
   }, [authReady, isCloudAdmin, authUser, hasCloudConfig, hasCloudProjects]);
 
-  // Sync activeTab with window URL pathname (/About_GAYEON_LEE/...) or hash
+  // Sync activeTab with window URL pathname (/About_GAYEON_LEE/...) or hash + discreet admin triggers
   useEffect(() => {
     const handleUrlChange = () => {
       const pathname = window.location.pathname;
       const hash = window.location.hash.replace('#', '');
+      const searchParams = new URLSearchParams(window.location.search);
+
+      if (searchParams.get('admin') === '1' || hash === 'admin' || pathname.endsWith('/admin')) {
+        setIsAdminOpen(true);
+      }
 
       if (pathname.includes('/about') || hash === 'about') {
         setActiveTabState('about');
@@ -337,18 +339,27 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setActiveTabState('home');
       }
 
-      if (!pathname.includes('About_GAYEON_LEE')) {
+      if (!pathname.includes('About_GAYEON_LEE') || searchParams.has('admin') || hash === 'admin' || pathname.endsWith('/admin')) {
         const targetPath = '/About_GAYEON_LEE';
         window.history.replaceState(null, '', targetPath);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        setIsAdminOpen((prev) => !prev);
       }
     };
 
     handleUrlChange();
     window.addEventListener('popstate', handleUrlChange);
     window.addEventListener('hashchange', handleUrlChange);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('popstate', handleUrlChange);
       window.removeEventListener('hashchange', handleUrlChange);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -634,8 +645,6 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         setSelectedProjectId,
         isResumeOpen,
         setIsResumeOpen,
-        isTranscriptOpen,
-        setIsTranscriptOpen,
         activeTab,
         setActiveTab,
         language,

@@ -577,9 +577,6 @@ export const ResumeModal: React.FC = () => {
                   {t.resume.emailLabel} <strong className="text-slate-900">{data.contact.email}</strong>
                 </div>
                 <div>
-                  {t.resume.phoneLabel} <strong className="text-slate-900">{data.contact.phone}</strong>
-                </div>
-                <div>
                   {t.resume.locationLabel} {t.contact.locationValue}
                 </div>
               </div>

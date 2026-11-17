@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePortfolio, PageTab } from '../context/PortfolioContext';
 import { Language } from '../data/translations';
-import { Lock, ArrowUp, Mail, Linkedin, Globe } from 'lucide-react';
+import { ArrowUp, Mail, Linkedin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { data, setIsAdminOpen, activeTab, setActiveTab, language, setLanguage, t } = usePortfolio();
@@ -92,14 +92,6 @@ export const Footer: React.FC = () => {
               <span>LinkedIn</span>
             </a>
             <button
-              onClick={() => setIsAdminOpen(true)}
-              className="hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer font-medium"
-              title="관리자 모드 (비밀번호: 1111)"
-            >
-              <Lock className="w-3.5 h-3.5 text-slate-500" />
-              <span>{t.nav.admin}</span>
-            </button>
-            <button
               onClick={scrollToTop}
               className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors cursor-pointer"
               aria-label="맨 위로"
@@ -110,7 +102,10 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center text-slate-500 text-[11px]">
-          <div>
+          <div
+            onDoubleClick={() => setIsAdminOpen(true)}
+            className="select-none"
+          >
             © {new Date().getFullYear()} {data.hero.englishName}. All rights reserved.
           </div>
           <div className="text-slate-500">

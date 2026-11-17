@@ -622,7 +622,7 @@ export const AdminModal: React.FC = () => {
                 <span>Google 계정으로 관리자 로그인 (웹 DB 실시간 반영)</span>
               </button>
               <div className="text-[11px] text-slate-500">
-                허용된 관리자 계정: gayeon11267@gmail.com
+                등록된 Google 관리자 계정으로 로그인할 수 있습니다.
               </div>
               {googleAuthError && (
                 <p className="text-xs text-red-400 bg-red-950/60 border border-red-800 rounded-lg p-2.5">
@@ -633,12 +633,12 @@ export const AdminModal: React.FC = () => {
 
             <div className="pt-5 border-t border-slate-800 space-y-3">
               <div className="text-[11px] text-slate-500 font-medium">
-                또는 현재 브라우저 임시 미리보기 (PIN: 1111)
+                또는 현재 브라우저 임시 미리보기 (PIN 로그인)
               </div>
               <form onSubmit={handleLogin} className="flex gap-2">
                 <input
                   type="password"
-                  placeholder="PIN 입력 (1111)"
+                  placeholder="관리자 PIN 입력"
                   value={passwordInput}
                   onChange={(e) => {
                     setPasswordInput(e.target.value);
@@ -655,7 +655,7 @@ export const AdminModal: React.FC = () => {
               </form>
               {loginError && (
                 <p className="text-xs text-red-400 font-medium">
-                  비밀번호가 올바르지 않습니다. (1111을 입력하세요)
+                  비밀번호가 올바르지 않습니다.
                 </p>
               )}
             </div>
@@ -2053,36 +2053,19 @@ export const AdminModal: React.FC = () => {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">이메일 주소</label>
-                      <input
-                        type="email"
-                        value={editData.contact.email}
-                        onChange={(e) =>
-                          setEditData({
-                            ...editData,
-                            contact: { ...editData.contact, email: e.target.value },
-                          })
-                        }
-                        className="w-full px-3 py-2 text-sm bg-slate-950 border border-slate-700 rounded-lg text-white"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">전화번호</label>
-                      <input
-                        type="text"
-                        value={editData.contact.phone}
-                        onChange={(e) =>
-                          setEditData({
-                            ...editData,
-                            contact: { ...editData.contact, phone: e.target.value },
-                          })
-                        }
-                        className="w-full px-3 py-2 text-sm bg-slate-950 border border-slate-700 rounded-lg text-white"
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">이메일 주소</label>
+                    <input
+                      type="email"
+                      value={editData.contact.email}
+                      onChange={(e) =>
+                        setEditData({
+                          ...editData,
+                          contact: { ...editData.contact, email: e.target.value },
+                        })
+                      }
+                      className="w-full px-3 py-2 text-sm bg-slate-950 border border-slate-700 rounded-lg text-white"
+                    />
                   </div>
 
                   <div>
