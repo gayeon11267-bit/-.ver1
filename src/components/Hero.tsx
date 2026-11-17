@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { ArrowDown, Download, CheckCircle2, MapPin, ArrowUpRight, TrendingUp, Sparkles, FolderKanban, Award, Mail } from 'lucide-react';
+import { MapPin, ArrowUpRight, Download, GraduationCap } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { data, setIsResumeOpen, setActiveTab, t, language } = usePortfolio();
@@ -28,9 +28,9 @@ export const Hero: React.FC = () => {
       <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-900/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        {/* Split Hero 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          {/* Left Column: Typographic Narrative */}
+        {/* Split Hero 2-Column Grid (Photo-free Clean Layout) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
+          {/* Left Column: Typographic Narrative & CTAs */}
           <div className="lg:col-span-7 space-y-7">
             {/* Clean Kicker */}
             <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-slate-400">
@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Headline */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-white leading-[1.25]" style={{ textWrap: 'balance' }}>
                 {currentHeadline.split('\n').map((line, idx) => (
                   <span key={idx} className="block">
@@ -71,33 +71,6 @@ export const Hero: React.FC = () => {
               <p className="text-base sm:text-lg text-slate-300/90 leading-relaxed font-normal max-w-2xl pt-1">
                 {currentSubHeadline}
               </p>
-            </div>
-
-            {/* Institutional KPI Strip (High Contrast Proof) */}
-            <div className="grid grid-cols-3 gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm shadow-xl">
-              <div className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight tabular-nums">
-                  {t.hero.kpis.kpi1Value}
-                </div>
-                <div className="text-xs font-bold text-slate-200">{t.hero.kpis.kpi1Title}</div>
-                <div className="text-[11px] text-slate-400 leading-tight">{t.hero.kpis.kpi1Desc}</div>
-              </div>
-
-              <div className="space-y-1 border-l border-slate-800 pl-4">
-                <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight tabular-nums">
-                  {t.hero.kpis.kpi2Value}
-                </div>
-                <div className="text-xs font-bold text-slate-200">{t.hero.kpis.kpi2Title}</div>
-                <div className="text-[11px] text-slate-400 leading-tight">{t.hero.kpis.kpi2Desc}</div>
-              </div>
-
-              <div className="space-y-1 border-l border-slate-800 pl-4">
-                <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight tabular-nums">
-                  {t.hero.kpis.kpi3Value}
-                </div>
-                <div className="text-xs font-bold text-slate-200">{t.hero.kpis.kpi3Title}</div>
-                <div className="text-[11px] text-slate-400 leading-tight">{t.hero.kpis.kpi3Desc}</div>
-              </div>
             </div>
 
             {/* CTAs with direct page navigation */}
@@ -135,50 +108,67 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: High-End Editorial Portrait Frame */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[380px] sm:max-w-md">
-              {/* Subtle outer framing accent */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-b from-blue-500/30 via-slate-800/40 to-indigo-500/30 blur-sm" />
-
-              <div className="relative bg-[#0F172A] border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl">
-                <div className="aspect-[3/4] relative overflow-hidden bg-slate-900">
-                  <img
-                    src={hero.profileImage}
-                    alt={`${hero.name} 프로필`}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                  {/* Bottom editorial gradient scrim */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent pointer-events-none" />
-
-                  {/* Profile Identification Card at Bottom */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-[#0B1120]/95 backdrop-blur-md border border-slate-700/80 p-4 rounded-2xl shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-base font-extrabold text-white flex items-center gap-2">
-                          <span>{language === 'ja' ? 'イ・ガヨン' : language === 'en' ? 'Gayeon Lee' : hero.name}</span>
-                          <span className="text-xs font-bold text-blue-400">
-                            {hero.englishName}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-medium mt-0.5">
-                          {t.hero.candidateCardRole}
-                        </p>
-                      </div>
-
-                      <div className="text-right">
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded-md">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          {t.hero.candidateCardStatus}
-                        </span>
-                      </div>
-                    </div>
+          {/* Right Column: Clean Candidate Snapshot & KPI Summary Card (No Photo) */}
+          <div className="lg:col-span-5">
+            <div className="bg-slate-900/85 border border-slate-700/80 rounded-3xl p-6 sm:p-7 shadow-2xl space-y-6 backdrop-blur-sm">
+              {/* Candidate Identity Header */}
+              <div className="flex items-start justify-between gap-3 pb-5 border-b border-slate-800">
+                <div>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                      {language === 'ja' ? 'イ・ガヨン' : language === 'en' ? 'Gayeon Lee' : hero.name}
+                    </h2>
+                    <span className="text-xs font-bold text-blue-400 tracking-wider">
+                      {hero.englishName}
+                    </span>
                   </div>
+                  <p className="text-xs sm:text-sm text-slate-300 font-medium mt-1">
+                    {t.hero.candidateCardRole}
+                  </p>
                 </div>
+
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded-md shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  {t.hero.candidateCardStatus}
+                </span>
+              </div>
+
+              {/* Institutional KPI Strip */}
+              <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
+                <div className="space-y-1">
+                  <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight tabular-nums">
+                    {t.hero.kpis.kpi1Value}
+                  </div>
+                  <div className="text-[11px] font-bold text-slate-200">{t.hero.kpis.kpi1Title}</div>
+                  <div className="text-[10px] text-slate-400 leading-tight">{t.hero.kpis.kpi1Desc}</div>
+                </div>
+
+                <div className="space-y-1 border-l border-slate-800 pl-3">
+                  <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight tabular-nums">
+                    {t.hero.kpis.kpi2Value}
+                  </div>
+                  <div className="text-[11px] font-bold text-slate-200">{t.hero.kpis.kpi2Title}</div>
+                  <div className="text-[10px] text-slate-400 leading-tight">{t.hero.kpis.kpi2Desc}</div>
+                </div>
+
+                <div className="space-y-1 border-l border-slate-800 pl-3">
+                  <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight tabular-nums">
+                    {t.hero.kpis.kpi3Value}
+                  </div>
+                  <div className="text-[11px] font-bold text-slate-200">{t.hero.kpis.kpi3Title}</div>
+                  <div className="text-[10px] text-slate-400 leading-tight">{t.hero.kpis.kpi3Desc}</div>
+                </div>
+              </div>
+
+              {/* Compact Academic & Birth Info Footer */}
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 pt-1">
+                <span className="flex items-center gap-1.5 font-medium text-slate-300">
+                  <GraduationCap className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  {t.contact.locationValue}
+                </span>
+                <span className="font-semibold text-slate-400 tabular-nums">
+                  {language === 'ko' ? hero.birthDate : '2003.11.26'}
+                </span>
               </div>
             </div>
           </div>
