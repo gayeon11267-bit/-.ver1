@@ -64,7 +64,7 @@ interface PortfolioContextType {
 
 const STORAGE_KEY_DATA = 'gayeon_portfolio_data_v6';
 const STORAGE_KEY_INQUIRIES = 'gayeon_portfolio_inquiries_v4';
-const ADMIN_PASSWORD = '1111';
+const ADMIN_PASSWORD = '1026';
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
