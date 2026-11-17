@@ -1,0 +1,222 @@
+{
+  "entities": {
+    "PortfolioConfig": {
+      "title": "PortfolioConfig",
+      "description": "Published global portfolio configuration including hero, about, education, skill categories, certifications, and public business contact info.",
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "description": "Hero profile and headline data"
+        },
+        "about": {
+          "type": "object",
+          "description": "About section bio and core values"
+        },
+        "education": {
+          "type": "array",
+          "description": "Academic background items"
+        },
+        "skillCategories": {
+          "type": "array",
+          "description": "Categorized skill competencies"
+        },
+        "certifications": {
+          "type": "array",
+          "description": "Ordered certifications and language credentials"
+        },
+        "contact": {
+          "type": "object",
+          "description": "Public business contact details (no street address)"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        },
+        "updatedBy": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "UID of admin who last updated"
+        }
+      },
+      "required": [
+        "hero",
+        "about",
+        "education",
+        "skillCategories",
+        "certifications",
+        "contact",
+        "updatedAt",
+        "updatedBy"
+      ]
+    },
+    "PortfolioProject": {
+      "title": "PortfolioProject",
+      "description": "Ordered internship experience or project showcase card displayed on the public portfolio.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderIndex": {
+          "type": "number",
+          "description": "Display ordering index (ascending)"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "period": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "category": {
+          "type": "string",
+          "enum": ["leadership", "internship", "project", "global", "special"]
+        },
+        "tags": {
+          "type": "array"
+        },
+        "metrics": {
+          "type": "array"
+        },
+        "overview": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "situation": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "task": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "action": {
+          "type": "array"
+        },
+        "result": {
+          "type": "array"
+        },
+        "skills": {
+          "type": "array"
+        },
+        "imageUrl": {
+          "type": "string",
+          "maxLength": 400000
+        },
+        "featured": {
+          "type": "boolean"
+        },
+        "translations": {
+          "type": "object"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "orderIndex",
+        "title",
+        "subtitle",
+        "role",
+        "period",
+        "category",
+        "tags",
+        "metrics",
+        "overview",
+        "situation",
+        "task",
+        "action",
+        "result",
+        "skills",
+        "updatedAt"
+      ]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Recruitment proposal or coffee chat inquiry submitted by visitors via Contact page.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "company": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "email": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "type": {
+          "type": "string",
+          "enum": ["interview", "coffee_chat", "project", "other"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "name",
+        "company",
+        "email",
+        "type",
+        "message",
+        "read",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/portfolio/{docId}": {
+      "schema": {
+        "$ref": "#/entities/PortfolioConfig"
+      },
+      "description": "Global published portfolio configuration document (docId: main)."
+    },
+    "/portfolio_projects/{projectId}": {
+      "schema": {
+        "$ref": "#/entities/PortfolioProject"
+      },
+      "description": "Ordered internship and project records rendered across all visitor sessions."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": {
+        "$ref": "#/entities/Inquiry"
+      },
+      "description": "Private recruiter inquiries readable only by verified admin."
+    }
+  }
+}

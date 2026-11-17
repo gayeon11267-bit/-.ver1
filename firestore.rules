@@ -1,0 +1,286 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny global safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive helpers
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && request.auth.token.email_verified == true
+        && (
+          request.auth.token.email == 'gayeon11267@gmail.com'
+          || exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        );
+    }
+
+    // Validation helper: PortfolioConfig (/portfolio/{docId})
+    function isValidPortfolioConfig(data) {
+      return data.keys().hasAll([
+          'hero',
+          'about',
+          'education',
+          'skillCategories',
+          'certifications',
+          'contact',
+          'updatedAt',
+          'updatedBy'
+        ])
+        && data.keys().hasOnly([
+          'hero',
+          'about',
+          'education',
+          'skillCategories',
+          'certifications',
+          'contact',
+          'updatedAt',
+          'updatedBy'
+        ])
+        && data.hero is map
+        && data.about is map
+        && data.education is list
+        && data.education.size() <= 30
+        && (data.education.size() == 0 || data.education[0] is map)
+        && data.skillCategories is list
+        && data.skillCategories.size() <= 20
+        && (data.skillCategories.size() == 0 || data.skillCategories[0] is map)
+        && data.certifications is list
+        && data.certifications.size() <= 80
+        && (data.certifications.size() == 0 || data.certifications[0] is map)
+        && data.contact is map
+        && data.updatedAt is timestamp
+        && data.updatedBy is string
+        && data.updatedBy.size() >= 1
+        && data.updatedBy.size() <= 128
+        && data.updatedBy == request.auth.uid;
+    }
+
+    // Validation helper: PortfolioProject (/portfolio_projects/{projectId})
+    function isValidPortfolioProject(data) {
+      return data.keys().hasAll([
+          'id',
+          'orderIndex',
+          'title',
+          'subtitle',
+          'role',
+          'period',
+          'category',
+          'tags',
+          'metrics',
+          'overview',
+          'situation',
+          'task',
+          'action',
+          'result',
+          'skills',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id',
+          'orderIndex',
+          'title',
+          'subtitle',
+          'role',
+          'period',
+          'category',
+          'tags',
+          'metrics',
+          'overview',
+          'situation',
+          'task',
+          'action',
+          'result',
+          'skills',
+          'imageUrl',
+          'featured',
+          'translations',
+          'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.orderIndex is number
+        && data.orderIndex >= 0
+        && data.orderIndex <= 10000
+        && data.title is string
+        && data.title.size() >= 1
+        && data.title.size() <= 300
+        && data.subtitle is string
+        && data.subtitle.size() <= 500
+        && data.role is string
+        && data.role.size() <= 300
+        && data.period is string
+        && data.period.size() <= 120
+        && data.category is string
+        && data.category in ['leadership', 'internship', 'project', 'global', 'special']
+        && data.tags is list
+        && data.tags.size() <= 20
+        && (data.tags.size() == 0 || data.tags[0] is string)
+        && data.metrics is list
+        && data.metrics.size() <= 10
+        && (data.metrics.size() == 0 || data.metrics[0] is map)
+        && data.overview is string
+        && data.overview.size() <= 3000
+        && data.situation is string
+        && data.situation.size() <= 3000
+        && data.task is string
+        && data.task.size() <= 3000
+        && data.action is list
+        && data.action.size() <= 30
+        && (data.action.size() == 0 || data.action[0] is string)
+        && data.result is list
+        && data.result.size() <= 30
+        && (data.result.size() == 0 || data.result[0] is string)
+        && data.skills is list
+        && data.skills.size() <= 30
+        && (data.skills.size() == 0 || data.skills[0] is string)
+        && (!data.keys().hasAny(['imageUrl']) || (data.imageUrl is string && data.imageUrl.size() <= 400000))
+        && (!data.keys().hasAny(['featured']) || data.featured is bool)
+        && (!data.keys().hasAny(['translations']) || data.translations is map)
+        && data.updatedAt is timestamp;
+    }
+
+    // Validation helper: Inquiry (/inquiries/{inquiryId})
+    function isValidInquiry(data) {
+      return data.keys().hasAll([
+          'name',
+          'company',
+          'email',
+          'type',
+          'message',
+          'read',
+          'createdAt'
+        ])
+        && data.keys().hasOnly([
+          'name',
+          'company',
+          'email',
+          'phone',
+          'type',
+          'message',
+          'read',
+          'createdAt'
+        ])
+        && data.name is string
+        && data.name.size() >= 1
+        && data.name.size() <= 120
+        && data.company is string
+        && data.company.size() <= 160
+        && data.email is string
+        && data.email.size() >= 3
+        && data.email.size() <= 200
+        && (!data.keys().hasAny(['phone']) || (data.phone is string && data.phone.size() <= 50))
+        && data.type is string
+        && data.type in ['interview', 'coffee_chat', 'project', 'other']
+        && data.message is string
+        && data.message.size() >= 1
+        && data.message.size() <= 4000
+        && data.read is bool
+        && data.createdAt is timestamp;
+    }
+
+    // Public portfolio configuration: anyone can read, only verified admin can write
+    match /portfolio/{docId} {
+      allow get: if isValidId(docId);
+      allow list: if false;
+      allow create: if isAdmin()
+        && isValidId(docId)
+        && docId == 'main'
+        && isValidPortfolioConfig(incoming())
+        && incoming().updatedAt == request.time;
+      allow update: if isAdmin()
+        && isValidId(docId)
+        && docId == 'main'
+        && isValidPortfolioConfig(incoming())
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'hero',
+          'about',
+          'education',
+          'skillCategories',
+          'certifications',
+          'contact',
+          'updatedAt',
+          'updatedBy'
+        ]);
+      allow delete: if false;
+    }
+
+    // Public ordered portfolio projects & internships: anyone can read, only verified admin can write
+    match /portfolio_projects/{projectId} {
+      allow get: if isValidId(projectId);
+      allow list: if true;
+      allow create: if isAdmin()
+        && isValidId(projectId)
+        && incoming().id == projectId
+        && isValidPortfolioProject(incoming())
+        && incoming().updatedAt == request.time;
+      allow update: if isAdmin()
+        && isValidId(projectId)
+        && incoming().id == projectId
+        && incoming().id == existing().id
+        && isValidPortfolioProject(incoming())
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'orderIndex',
+          'title',
+          'subtitle',
+          'role',
+          'period',
+          'category',
+          'tags',
+          'metrics',
+          'overview',
+          'situation',
+          'task',
+          'action',
+          'result',
+          'skills',
+          'imageUrl',
+          'featured',
+          'translations',
+          'updatedAt'
+        ]);
+      allow delete: if isAdmin() && isValidId(projectId);
+    }
+
+    // Contact inquiries: anyone can submit (with read == false), only verified admin can read/mark read/delete
+    match /inquiries/{inquiryId} {
+      allow get: if isAdmin() && isValidId(inquiryId);
+      allow list: if isAdmin();
+      allow create: if isValidId(inquiryId)
+        && isValidInquiry(incoming())
+        && incoming().read == false
+        && incoming().createdAt == request.time;
+      allow update: if isAdmin()
+        && isValidId(inquiryId)
+        && isValidInquiry(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().diff(existing()).affectedKeys().hasOnly(['read']);
+      allow delete: if isAdmin() && isValidId(inquiryId);
+    }
+
+    // Optional admin role documents
+    match /admins/{userId} {
+      allow get: if isSignedIn() && isValidId(userId) && request.auth.uid == userId;
+      allow list, create, update, delete: if false;
+    }
+  }
+}
