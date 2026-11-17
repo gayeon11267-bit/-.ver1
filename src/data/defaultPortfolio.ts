@@ -10,7 +10,7 @@ export const defaultPortfolioData: PortfolioData = {
     mainHeadline: '꼼꼼한 숫자와 서류 확인으로,\n사람과 현장을 든든하게 잇습니다.',
     subHeadline:
       '건국대학교 경영학과(4.13/4.5) 재학 중 (주)월급날 연말정산팀 및 FNC엔터테인먼트 인턴십, 교내 인사학회 KU-PITAL 운영진 활동을 통해 공제 서류 1·2차 검토, 근로자 상담(CS), 설문 데이터 정제, 일정 조율 등 현장 HR 실무 기본기를 다진 신입 지원자 이가연입니다.',
-    profileImage: '/src/assets/images/gayeon_hr_portrait_1794448404910.jpg',
+    profileImage: '',
     status: '신입 채용 · 급여/인사운영 현장 실무 지원 중',
     location: '',
     highlightPillars: [
@@ -143,7 +143,7 @@ export const defaultPortfolioData: PortfolioData = {
         '실무 경험을 바탕으로 한국페이롤협회 연말정산 실무자 2급 자격 취득으로 전문성 심화',
       ],
       skills: ['연말정산 실무', 'Excel (상)', '공제 서류 검토', '근로자 CS 응대'],
-      imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+      imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
     },
     {
       id: 'proj-fnc-intern',
@@ -176,7 +176,7 @@ export const defaultPortfolioData: PortfolioData = {
         '일본어 역량(JLPT N1)으로 현지 자료를 직접 확인해 일본 현황 정리의 정확도 향상',
       ],
       skills: ['데이터 정제·시각화', '시장·자료 조사', '문서·장표 정리', 'Excel / PPT'],
-      imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+      imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
     },
     {
       id: 'proj-academic-hr',
@@ -209,7 +209,7 @@ export const defaultPortfolioData: PortfolioData = {
         '약 3년간 다수 학회원의 일정을 맞추고 공지·행사를 꼼꼼히 챙기며 HR 실무 소통 기본기 체득',
       ],
       skills: ['일정 조율·공지', '스터디·워크숍 진행', '자료·문서 정리', '팀 협업'],
-      imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+      imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
     },
     {
       id: 'proj-global-exchange',
@@ -243,7 +243,7 @@ export const defaultPortfolioData: PortfolioData = {
         'JLPT N1(110점) 및 OPIc IH 취득으로 입증된 실전 글로벌 비즈니스 소통 역량 확립',
       ],
       skills: ['비즈니스 일본어 (JLPT N1)', '영어 소통 (OPIc IH)', '현지 인터뷰·리서치', '콘텐츠 기획'],
-      imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+      imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
     },
     {
       id: 'proj-gwangjin-policy',
@@ -275,7 +275,7 @@ export const defaultPortfolioData: PortfolioData = {
         '지자체·대학 간 협업 커뮤니케이션 및 타깃 맞춤형 메시지 전달 역량 강화',
       ],
       skills: ['정책 기획·제안', '수요자 분석', '홍보 콘텐츠 기획', '팀 협업'],
-      imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+      imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
     },
     {
       id: 'proj-suwon-youth',
@@ -306,7 +306,7 @@ export const defaultPortfolioData: PortfolioData = {
         '캔바(Canva)·미리캔버스 기반 카드뉴스 제작 및 현장 시민 응대 경험 축적',
       ],
       skills: ['카드뉴스·블로그 제작', '오프라인 행사 운영', '정책 커뮤니케이션', '캔바/미리캔버스'],
-      imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+      imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
     },
     {
       id: 'proj-greencrew',
@@ -337,7 +337,7 @@ export const defaultPortfolioData: PortfolioData = {
         '현장 부스 운영과 온라인 홍보 연계를 통해 지역 사회의 환경 인식 개선 및 지속가능한 생활 실천 확산에 기여',
       ],
       skills: ['현장 행사 운영', '대면 커뮤니케이션', '블로그 콘텐츠 작성', 'ESG·사회공헌'],
-      imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+      imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
     },
     {
       id: 'proj-ktwiz-crm',
@@ -368,7 +368,7 @@ export const defaultPortfolioData: PortfolioData = {
         '최종 발표 진출에는 아쉬움을 남겼으나, 실제 스포츠 구단의 CRM 운영 구조와 데이터 기반 기획·리스크 관리 프레임워크를 깊이 체득',
       ],
       skills: ['CRM 기획', '소비자 데이터 분석', '리스크 관리', '마케팅 전략'],
-      imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+      imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
     },
   ],
   skillCategories: [

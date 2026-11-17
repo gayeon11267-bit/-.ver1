@@ -776,7 +776,7 @@ export const translations: Record<Language, Translations> = {
             'Earned the Year-End Tax Specialist Level 2 certification following practical field experience',
           ],
           skills: ['Year-End Tax Practice', 'Excel (Advanced)', 'Document Auditing', 'Employee CS'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
         {
           id: 'proj-fnc-intern',
@@ -808,7 +808,7 @@ export const translations: Record<Language, Translations> = {
             'Applied JLPT N1 Japanese fluency to verify Japanese market sources accurately',
           ],
           skills: ['Data Cleaning & Charts', 'Desk Research', 'Document Support', 'Excel / PPT'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
         {
           id: 'proj-academic-hr',
@@ -840,7 +840,7 @@ export const translations: Record<Language, Translations> = {
             'Built three years of hands-on scheduling, announcement clarity, and group coordination habits',
           ],
           skills: ['Schedule Coordination', 'Workshop Logistics', 'Document Archiving', 'Team Support'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-global-exchange',
@@ -873,7 +873,7 @@ export const translations: Record<Language, Translations> = {
             'Solidified bilingual professional readiness demonstrated by JLPT N1 (110) and OPIc IH',
           ],
           skills: ['Business Japanese (JLPT N1)', 'English (OPIc IH)', 'Field Interviews', 'Editorial Planning'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-gwangjin-policy',
@@ -904,7 +904,7 @@ export const translations: Record<Language, Translations> = {
             'Strengthened cross-stakeholder communication between municipal planners and campus communities',
           ],
           skills: ['Policy Planning', 'Audience Analysis', 'Content Strategy', 'Collaboration'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-suwon-youth',
@@ -934,7 +934,7 @@ export const translations: Record<Language, Translations> = {
             'Built hands-on visual design (Canva/Miricanvas) and citizen communication skills',
           ],
           skills: ['Card News / Blogging', 'Event Operations', 'Policy Communication', 'Canva'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-greencrew',
@@ -964,7 +964,7 @@ export const translations: Record<Language, Translations> = {
             'Contributed to community environmental awareness and sustainable lifestyle adoption via online-offline outreach',
           ],
           skills: ['Event Facilitation', 'Public Communication', 'Editorial Blogging', 'ESG Outreach'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-ktwiz-crm',
@@ -994,7 +994,7 @@ export const translations: Record<Language, Translations> = {
             'Although falling short of finals, gained deep grounding in sports CRM mechanics, user data segmentation, and risk mitigation',
           ],
           skills: ['CRM Planning', 'Consumer Data Analysis', 'Risk Management', 'Marketing Strategy'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
       ],
     },
@@ -1479,7 +1479,7 @@ export const translations: Record<Language, Translations> = {
             '実務経験をベースに韓国ペイロール協会「年末調整実務者2級」資格を取得し専門性を深化',
           ],
           skills: ['年末調整実務', 'Excel（上）', '控除書類精査', '勤労者CS対応'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
         {
           id: 'proj-fnc-intern',
@@ -1512,7 +1512,7 @@ export const translations: Record<Language, Translations> = {
             'JLPT N1の日本語力を活かして日本現地資料を直接確認し、基礎調査の正確性を向上',
           ],
           skills: ['データ精査・可視化', '基礎リサーチ', '資料・スライド整理', 'Excel / PPT'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
         {
           id: 'proj-academic-hr',
@@ -1545,7 +1545,7 @@ export const translations: Record<Language, Translations> = {
             '約3年間の日程調整・周知連絡・イベント進行を通じてHR現場の調整力を習得',
           ],
           skills: ['日程調整・連絡', 'ワークショップ運営', '資料・文書整理', 'チーム協働'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-global-exchange',
@@ -1579,7 +1579,7 @@ export const translations: Record<Language, Translations> = {
             'JLPT N1（110点）およびOPIc IHで裏付けられた日英ビジネスコミュニケーション力を確立',
           ],
           skills: ['ビジネス日本語（JLPT N1）', '英語（OPIc IH）', '現地取材・リサーチ', '記事企画'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-gwangjin-policy',
@@ -1611,7 +1611,7 @@ export const translations: Record<Language, Translations> = {
             '自治体と大学間の協力コミュニケーションおよびターゲット向け発信力を強化',
           ],
           skills: ['政策企画・提案', '需要者分析', '広報コンテンツ設計', 'チーム協業'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-suwon-youth',
@@ -1642,7 +1642,7 @@ export const translations: Record<Language, Translations> = {
             'Canva・Miricanvasによる広報物制作と対面での市民対応経験を蓄積',
           ],
           skills: ['カードニュース/ブログ制作', 'オフライン運営', '政策広報', 'Canva'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-greencrew',
@@ -1673,7 +1673,7 @@ export const translations: Record<Language, Translations> = {
             '現場ブース運営とオンライン発信の連携により地域社会の環境意識向上と実践拡大に貢献',
           ],
           skills: ['イベント運営', '対面コミュニケーション', '記事執筆', 'ESG活動'],
-          imageUrl: '/src/assets/images/team_collaboration_session_1794448404917.jpg',
+          imageUrl: '/assets/images/team_collaboration_session_1794448404917.jpg',
         },
         {
           id: 'proj-ktwiz-crm',
@@ -1704,7 +1704,7 @@ export const translations: Record<Language, Translations> = {
             '決勝進出は惜しくも逃したものの、スポーツ球団CRM構造・データ基盤企画・リスク管理フレームを深く習得',
           ],
           skills: ['CRM企画', '消費者データ分析', 'リスク管理', 'マーケティング戦略'],
-          imageUrl: '/src/assets/images/hr_analytics_workspace_1794448404200.jpg',
+          imageUrl: '/assets/images/hr_analytics_workspace_1794448404200.jpg',
         },
       ],
     },

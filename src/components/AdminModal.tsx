@@ -429,8 +429,8 @@ export const AdminModal: React.FC = () => {
       imageUrl:
         newProj.imageUrl.trim() ||
         (newProj.category === 'internship'
-          ? '/src/assets/images/hr_analytics_workspace_1794448404200.jpg'
-          : '/src/assets/images/team_collaboration_session_1794448404917.jpg'),
+          ? '/assets/images/hr_analytics_workspace_1794448404200.jpg'
+          : '/assets/images/team_collaboration_session_1794448404917.jpg'),
       ...(enTrans || jaTrans
         ? {
             translations: {
