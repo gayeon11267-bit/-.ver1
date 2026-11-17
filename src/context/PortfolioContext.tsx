@@ -101,17 +101,42 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       const saved = localStorage.getItem(STORAGE_KEY_DATA);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed.contact) {
-          parsed.contact.linkedIn = 'https://www.linkedin.com/in/gayeon-lee2003';
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          return {
+            ...defaultPortfolioData,
+            ...parsed,
+            hero:
+              parsed.hero && typeof parsed.hero === 'object'
+                ? { ...defaultPortfolioData.hero, ...parsed.hero }
+                : defaultPortfolioData.hero,
+            about:
+              parsed.about && typeof parsed.about === 'object'
+                ? { ...defaultPortfolioData.about, ...parsed.about }
+                : defaultPortfolioData.about,
+            education:
+              Array.isArray(parsed.education) && parsed.education.length > 0
+                ? parsed.education
+                : defaultPortfolioData.education,
+            projects: Array.isArray(parsed.projects)
+              ? parsed.projects
+              : defaultPortfolioData.projects,
+            skillCategories:
+              Array.isArray(parsed.skillCategories) && parsed.skillCategories.length > 0
+                ? parsed.skillCategories
+                : defaultPortfolioData.skillCategories,
+            certifications: Array.isArray(parsed.certifications)
+              ? parsed.certifications
+              : defaultPortfolioData.certifications,
+            contact:
+              parsed.contact && typeof parsed.contact === 'object'
+                ? {
+                    ...defaultPortfolioData.contact,
+                    ...parsed.contact,
+                    linkedIn: 'https://www.linkedin.com/in/gayeon-lee2003',
+                  }
+                : defaultPortfolioData.contact,
+          };
         }
-        return {
-          ...defaultPortfolioData,
-          ...parsed,
-          education:
-            parsed.education && parsed.education.length > 0
-              ? parsed.education
-              : defaultPortfolioData.education,
-        };
       }
     } catch (e) {
       console.warn('Failed to parse portfolio data from storage, using defaults', e);

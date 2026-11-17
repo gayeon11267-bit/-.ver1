@@ -224,8 +224,22 @@ async function createServer() {
 
   if (!isDevMode && fs.existsSync(distIndex)) {
     app.use('/src/assets/images', express.static(path.resolve(__dirname, 'src/assets/images')));
-    app.use(express.static(distDir));
-    app.get('*', (_req: Request, res: Response) => {
+    app.use(
+      express.static(distDir, {
+        index: false,
+        setHeaders: (res, filePath) => {
+          if (filePath.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+          }
+        },
+      })
+    );
+    app.get('*', (req: Request, res: Response) => {
+      if (req.path.startsWith('/assets/') || /\.[a-z0-9]{1,8}$/i.test(req.path)) {
+        res.status(404).end();
+        return;
+      }
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.sendFile(distIndex);
     });
   } else {

@@ -1,8 +1,3 @@
-import * as pdfjsLib from 'pdfjs-dist';
-import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
-
 export interface ImageCompressOptions {
   maxWidth?: number;
   maxHeight?: number;
@@ -59,10 +54,16 @@ const processPdfFile = async (
   file: File,
   options: Required<ImageCompressOptions>
 ): Promise<string> => {
+  const [pdfjsLib, workerMod] = await Promise.all([
+    import('pdfjs-dist/legacy/build/pdf.mjs'),
+    import('pdfjs-dist/legacy/build/pdf.worker.min.mjs?url'),
+  ]);
+  pdfjsLib.GlobalWorkerOptions.workerSrc = workerMod.default;
+
   const { maxWidth, maxHeight, quality } = options;
   const arrayBuffer = await file.arrayBuffer();
   const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-  let pdf: pdfjsLib.PDFDocumentProxy | null = null;
+  let pdf: Awaited<typeof loadingTask.promise> | null = null;
 
   try {
     pdf = await loadingTask.promise;
